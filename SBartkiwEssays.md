@@ -1,6 +1,9 @@
 **Shannon Bartkiw**
+
 6021 36th Ave NE, Seattle, WA 98115
+
 206.227.5806
+
 shnnnbrtkw@gmail.com
 
 ---
