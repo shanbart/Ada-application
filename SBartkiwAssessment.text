@@ -1,0 +1,88 @@
+|Shannon Bartkiw|
+|:---|
+|6021 36th Ave NE, Seattle, WA 98115|
+|206.227.5806|
+|shnnnbrtkw@gmail.com|
+
+---
+
+###1. Find the month in 2015 where the State of Washington had the largest number of storm events. How many days of storm-free weather occurred in that month? 
+
+The largest number of storm events in 2015 occurred during the month of December. In that month, there were 12 storm-free days.
+
+After excluding all counties, zones and marine areas(CZ) that start with the letters A-C, I first created a pivot table with rows being STATE and BEGIN_DAY, columns being MONTH, and data being count of EVENT_ID. Then I filtered the table so only Washington state was displayed. The resulting table (Table 1) shows that Washington had the greatest number of storm events in December of 2015. I then used the function =count(cell range) to determine how many days in each month had storm events. The 140 storm events that happened in Washington State in December 2015 (excluding counties, zones, and marine areas that started with the letters A-C), occurred in 19 days. Or in other words, as there are 31 days in December, there were 12 storm-free days in that month. Interestingly, there were no storm events that started on the 25th or 27th of any month in those Washington counties, zones, and marine areas.
+
+**Table 1. Count of storm events by month in 2015**
+											
+|STATE	|BEGIN_DAY	|April	|August	|December	|February	|January	|July	|June	|March	|May	|November	|October	|September	|
+|---	|---            |:---:	|:---:	|:---:    	|:---:     	|:---:	        |:---:	|:---:	|:---:	|:---:	|:---:	        |:---:	        |:---:	        |
+WASHINGTON|1 |	1|	4|	2|	6|    	|	5|	10|	|	|	1|	3|	16|	
+	|   |2|	|	|	10|	|	3|	2|	|	|	|	|	|	|	
+	|   |3|	|	1|	3|	|	22|	2|	1|	|	|	|	|	1|	
+	|   |4|	|	1|	6|	|	9|	|	|	|	|	|	|	|	
+	|   |5|	|	|	10|	2|	3|	4|	|	|	|	|	|	|	
+	|   |6|	4|	|	5|	5|	|	|	|	|	|	|	|	|	
+	|   |7|	|	|	4|	6|	|	|	1|	|	|	|	|	|	
+	|   |8|	|	|	7|	|	|	|	|	|	|	|	|	|	
+	|   |9|	|	|	14|	|	|	|	|	|	|	|	|	|	
+	|   |10|	|	3|	6|	|	|	4|	|	|	|	|	7|	|	
+	|   |11|	|	1|	|	|	|	|	|	|	|	1|	|	|	
+	|   |12|	|	|	7|	|	|	|	|	|	|	2|	|	|	
+	|   |13|	|	3|	1|	|	|	|	|	|	|	|	|	|	
+	|   |14|	|	10|	|	|	|	|	|	|	|	2|	|	|	
+	|   |15|	|	1|	5|	|	33|	1|	|	4|	|	|	|	|	
+	|   |16|	|	|	|	|	|	|	|	|	2|	1|	|	|	
+	|   |17|	|	|	13|	|	31|	|	|	|	|	47|	|	|	
+	|   |18|	|	1|	|	|	6|	|	|	|	|	1|	|	|	
+	|   |19|	|	|	1|	|	|	|	|	|	|	|	|	|	
+	|   |20|	|	|	6|	|	|	2|	|	|	|	|	|	|	
+	|   |21|	|	3|	27|	|	|	|	|	|	3|	|	|	|	
+	|   |22|	|	|	10|	|	|	|	|	|	1|	|	|	|	
+	|   |23|	|	|	3|	|	|	1|	|	|	2|	2|	|	|	
+	|   |24|	|	|	|	|	|	|	|	|	|	1|	|	|	
+	|   |26|	|	|	|	|	|	|	1|	|	1|	|	|	|	
+	|   |28|	|	|	|	|	|	1|	3|	|	2|	|	|	|	
+	|   |29|	|	16|	|	|	1|	|	8|	|	11|	|	|	|	
+	|   |30|	|	|	|	|	|	|	1|	|	8|	|	|	|	
+	|   |31|	|	|	|	|	|	2|	|	|	1|	|	3|	|	
+Total Result|	|	5|	44|	140|	19|	108|	24|	25|	4|	31|	58|	13|	17|	
+COUNT| 	|	2|	11|	19|	4|	8|	10|	7|	1|	9|	9|	3|	2|	
+
+
+
+
+###2. How many storms impacting trees happened between 8PM EST and 8AM EST in 2000?
+
+One hundred and sixty four storms impacted trees between 8pm and 8am EST in 2000.  
+
+After again discarding the CZ A-C data, I used a standard filter on the remaining data where EPISODE_NARRATIVE contained the word "tree", CZ_TIMEZONE equaled EST, BEGIN_TIME was greater than or equal to 2000 and END_TIME was less than or equal to 0800. This initially resulted in some cells being included that had non-target words which contained the target, such as "street," so the filter was re-run with " tree" as the condition. The filtered data had 164 rows, indicating 164 storm episodes/events occurred between the indicated hours.
+
+
+###3. In which year (2000 or 2015) did storms have a higher monetary impact within the boundaries of the 13 original colonies?
+
+Storms had a higher monetary impact in the year 2000 (Table 2).
+
+The amount of damage done to both property and crops were used to calculate the monetary impact of the storms. In the data sets, these values are reported in a format that is not summable (eg. $10,050 is reported as 10.05K), nor would it be possible to simply replace K with 000, so I used the following to convert values:
+Using the tool Find/Replace, in the Search for box, type ^([^k]+)k. In the Replace box, type =$1*1000. Turn on Regular expressions, then Replace all. I then repeated the action for those cells reported in millions (M), with M instead of k in the search term, and 1000000 instead of 1000 in the Replace box. Then in each data set, I created a pivot table where the columns were the sum of DAMAGE_PROPERTY and DAMAGE_CROPS, and the rows were STATE. I then filtered the states to include the 13 original colonies and the District of Columbia. While DC was not one of the original colonies, it was created from Maryland and Virginia, therefore I felt it should be included in this analysis. Based on these tables, storm damage totaled $762 million in 2000, and $286 million in 2015. 
+
+**Table 2. Total monetary storm damage to property and crops in the boundaries of the 13 original colonies.**
+
+|STATE	|2000|	2015|
+|---	|---:	|---:	|
+|CONNECTICUT	|$6,731,000	|$1,501,000|
+|DELAWARE	|$166,000	|$545,500|
+|DISTRICT OF COLUMBIA	|$1,042,500	|$13,000|
+|GEORGIA	|$397,683,200	|$23,735,750|
+|MARYLAND	|$4,344,400	|$492,500|
+|MASSACHUSETTS	|$20,000	|$4,360,500|
+|NEW HAMPSHIRE	|$815,000	|$220,000|
+|NEW JERSEY	|$184,169,000|$50,554,000|
+|NEW YORK	|$89,194,000	|$24,436,250|
+|NORTH CAROLINA	|$13,244,600	|$22,867,100|
+|PENNSYLVANIA	|$20,803,700	|$14,599,500|
+|RHODE ISLAND	|$68,000	|$466,000|
+|SOUTH CAROLINA	|$34,973,000	|$123,182,900|
+|VIRGINIA	|$8,807,900	|$18,906,700|
+|Total Damage		|$762,062,300	|$285,880,700|
+
+
